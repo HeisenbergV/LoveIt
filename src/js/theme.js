@@ -32,7 +32,7 @@ class Theme {
     constructor() {
         this.config = window.config;
         this.data = this.config.data;
-        this.isDark = document.body.getAttribute('theme') === 'dark';
+        this.isDark = false;
         this.util = new Util();
         this.newScrollTop = this.util.getScrollTop();
         this.oldScrollTop = this.newScrollTop;
@@ -84,9 +84,9 @@ class Theme {
         this.util.forEach(document.getElementsByClassName('theme-switch'), $themeSwitch => {
             $themeSwitch.addEventListener('click', () => {
                 if (document.body.getAttribute('theme') === 'dark') document.body.setAttribute('theme', 'light');
-                else document.body.setAttribute('theme', 'dark');
+                else document.body.setAttribute('theme', 'light');
                 this.isDark = !this.isDark;
-                window.localStorage && localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+                window.localStorage && localStorage.setItem('theme', this.isDark ? 'light' : 'light');
                 for (let event of this.switchThemeEventSet) event();
             }, false);
         });
